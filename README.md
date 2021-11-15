@@ -85,13 +85,42 @@ The report should contain the following:
 2. **Results**: Using bulleted lists and images to support your answers, address the following questions.
 
   * Data Preprocessing
+    
     * What variable(s) are considered the target(s) for your model?
+    I choose the "IS_SUCCESSFUL" columns for my target(s) columns and train my model.
+    
     * What variable(s) are considered to be the features for your model?
+    I drop the 'EIN' and 'NAME' columns because is not useful for the model. 
+    Moreover, I bin the  'APPLICATION_TYPE', 'CLASSIFICATION', and 'INCOME_AMT' columns to reduce the number of columns after get 
+    dummies function. I keep other columns to be the features.
+    
     * What variable(s) are neither targets nor features, and should be removed from the input data?
+    I only drop the 'EIN' and 'NAME' columns because I think is not useful.
   * Compiling, Training, and Evaluating the Model
+    
     * How many neurons, layers, and activation functions did you select for your neural network model, and why?
-    * Were you able to achieve the target model performance?
-    * What steps did you take to try and increase model performance?
+    I made three layer for my neural network model, and I use different unit in different layer since I think use too many unit 
+    may overfitting the model. 
+    The First hidden layer Unit=80, activation= relu
+    The second hidden layer Unit=50, activation= relu
+    The third hidden layer Unit=30, activation= relu
+
+    I drop down the number of unit on each layer but keep using same activation. Because I run several time of the model, if I 
+    put different activation like tanh or sigmoid, the accuracy become lower.
+   
+   * Were you able to achieve the target model performance?
+   Yes, I success to optimize the model by using keras_tuner, including 'activation',['relu','tanh','sigmoid'], and range the 
+   layer up to 6, unit is between 30 to 80.
+
+   The best model I get is 'activation': 'sigmoid' and 'num_layers': 6.
+   we can see that the more layer we add the higher accuracy we get. But the best accuracy I got is around 74%, and achieve 75%
+   
+   * What steps did you take to try and increase model performance?
+
+   I try lots of different method to increase model performance, like PCA or feature_selection but the best way 
+   to improve the performance is clean the data. Therefore, I drop the useless columns, bin different type record on some column 
+   and drop the amount of columns down. This process help me increase model performance.
+   
 
 3. **Summary**: Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and explain your recommendation.
 
